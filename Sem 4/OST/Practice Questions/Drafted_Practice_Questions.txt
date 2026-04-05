@@ -1,0 +1,38 @@
+Problem Statement 6: Dictionary
+Write a Swift program to simulate a simple student grades book using dictionaries.
+Requirements:
+Initialize a dictionary mapping student names to their scores (e.g., "Alice": 85).
+Add a new student with their score.
+Update the score of an existing student.
+Remove a student from the dictionary.
+Print the final dictionary containing the updated student roster.
+
+Problem Statement 7: Optionals
+Write a Swift program to safely unwrap a user's profile data.
+Requirements:
+Declare an optional string representing an email address and an optional integer representing an age.
+Assign a nil value to the email address and a valid number to the age.
+Attempt to unwrap both using optional binding (if let).
+Print their values if they exist. If they do not exist, print a fallback message indicating the data is missing.
+
+Problem Statement 8: Switch Statement (Control Flow)
+Write a Swift program to simulate an ATM machine menu.
+Requirements:
+Create an integer constant representing a user's menu choice from 1 to 4 (e.g., 1=Balance, 2=Withdraw, 3=Deposit, 4=Exit).
+Use a switch statement to evaluate the choice.
+Print an appropriate action for the respective choice.
+Include a default case to handle invalid selections and print "Invalid menu option."
+
+Problem Statement 9: Enums
+Write a Swift program to represent the delivery status of a package using an Enum.
+Requirements:
+Declare an enum `DeliveryStatus` with cases: processing, shipped, outForDelivery, and delivered.
+Create a variable holding one of these states.
+Print a different message to the user depending on which enum case is currently active.
+
+Problem Statement 10: Structs
+Write a Swift program to represent a basic library book using a struct.
+Requirements:
+Define a struct named `Book` with stored properties for `title`, `author`, and `pages`.
+Create an instance of the struct.
+Print out a formatted sentence describing the book (e.g., "'The Great Gatsby' by F. Scott Fitzgerald has 218 pages.").
