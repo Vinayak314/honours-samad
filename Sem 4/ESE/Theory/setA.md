@@ -170,60 +170,60 @@ While `try?` and `try!` can make code shorter, they can make it more difficult t
 
 Delegation is widely used to handle events, update data, or decouple objects so they do not need to know the inner workings of one another.
 
-### Real-World Example: A Restaurant Manager and a Chef
-Imagine a restaurant where a **Manager** takes customer orders. The Manager does not cook the food; instead, they *delegate* the cooking responsibility to a **Chef**. 
+### Real-World Example: A YouTuber and a Video Editor
+Imagine a **YouTuber** who shoots videos but does not know how to edit them. Instead of learning to edit, they *delegate* the editing responsibility to a **Video Editor**.
 
-**1. The Protocol (The Job Description)** 
-First, you define a protocol that outlines the task that needs to be delegated.
+**1. The Protocol (The Job Listing)**
+First, you define a protocol that outlines the task that needs to be delegated. Think of this as a job listing that says: "Must be able to edit video."
 ```swift
-protocol CookingDelegate {
-    func cookOrder(dishName: String)
+protocol EditingDelegate {
+    func editVideo(rawFootage: String)
 }
 ```
 
-**2. The Delegator (The Manager)**
-The Manager has an optional `delegate` property. The Manager doesn't care *who* the delegate is (it could be a head chef, a sous-chef, or a robot), just so long as whoever fills the role conforms to the `CookingDelegate` protocol.
+**2. The Delegator (The YouTuber)**
+The YouTuber has an optional `delegate` property. The YouTuber doesn't care *who* the editor is (it could be a freelancer, a studio, or an AI tool), just so long as whoever fills the role conforms to the `EditingDelegate` protocol.
 ```swift
-class Manager {
-    // The delegate is optional because the manager might not have a chef on shift
-    var delegate: CookingDelegate?
+class YouTuber {
+    // The delegate is optional because the YouTuber might not have an editor yet
+    var delegate: EditingDelegate?
 
-    func takeOrder(dishName: String) {
-        print("Manager took an order for \(dishName).")
-        // The manager hands off the cooking responsibility to the delegate
-        delegate?.cookOrder(dishName: dishName)
+    func finishShooting(videoName: String) {
+        print("YouTuber finished shooting \(videoName).")
+        // The YouTuber hands off the editing responsibility to the delegate
+        delegate?.editVideo(rawFootage: videoName)
     }
 }
 ```
 
-**3. The Delegate (The Chef)**
-The Chef adopts the `CookingDelegate` protocol and provides the actual steps for cooking the food.
+**3. The Delegate (The Video Editor)**
+The Video Editor adopts the `EditingDelegate` protocol and provides the actual implementation for editing the video.
 ```swift
-class Chef: CookingDelegate {
-    func cookOrder(dishName: String) {
-        print("Chef is now cooking the \(dishName)!")
+class VideoEditor: EditingDelegate {
+    func editVideo(rawFootage: String) {
+        print("Editor is now editing \(rawFootage)!")
     }
 }
 ```
 
 **4. Putting it together**
-You create instances of both objects and assign the Chef to be the Manager's delegate.
+You create instances of both objects and assign the Video Editor to be the YouTuber's delegate.
 ```swift
-let manager = Manager()
-let chef = Chef()
+let creator = YouTuber()
+let editor = VideoEditor()
 
-// Assign the chef as the manager's delegate
-manager.delegate = chef 
+// Assign the editor as the YouTuber's delegate
+creator.delegate = editor
 
-// When the manager takes an order, the chef's delegated method is triggered
-manager.takeOrder(dishName: "Pizza") 
+// When the YouTuber finishes shooting, the editor's delegated method is triggered
+creator.finishShooting(videoName: "Travel Vlog")
 ```
 **Output:**
-*Manager took an order for Pizza.*
-*Chef is now cooking the Pizza!*
+*YouTuber finished shooting Travel Vlog.*
+*Editor is now editing Travel Vlog!*
 
 **Why use this?**
-By using delegation, the `Manager` class and the `Chef` class remain entirely decoupled. The Manager doesn't need to know how the kitchen works to get the pizza made, and the Chef doesn't need to know how to interact with customers. They simply communicate safely through the shared protocol.
+By using delegation, the `YouTuber` class and the `VideoEditor` class remain entirely decoupled. The YouTuber never needs to learn how to edit, and the Editor never needs to learn how to be on camera. They communicate only through the shared protocol. If the YouTuber wants to switch editors, they simply assign a new object to the `delegate` property — no other code needs to change.
 
 ### Q6. Explain the concept of computed properties in Swift with an example
 

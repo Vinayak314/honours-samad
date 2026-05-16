@@ -24,7 +24,15 @@ To separate code efficiently, we moved the `DetailsViewController` out of `ViewC
 - **Dark Mode Switch**: Toggles the interface style between `.light` and `.dark`.
 
 ### 4. Navigation & Segues
-- **Navigation Controller**: The initial `ViewController` is embedded in a `UINavigationController` (via Editor > Embed In > Navigation Controller). This provides a top navigation bar and standard push/pop navigation functionality.
-- **Segue Setup**: A "Show" (push) segue is drawn directly between the Login View Controller and the Details View Controller. Its identifier is set to `showDetails` in the Attributes Inspector.
-- **Triggering Segues Programmatically**: Instead of connecting the segue directly to the Login button, it's triggered via `performSegue(withIdentifier: "showDetails", sender: self)` only *after* the credentials have been validated.
-- **Passing Data**: The `prepare(for:sender:)` method is overridden to intercept the segue before it occurs. We check if the identifier is `showDetails`, cast the destination to `DetailsViewController`, and safely pass the `username` to the next screen.
+
+Our app uses **Storyboards** and **Segues** to handle moving between screens. Here is how the flow works step-by-step:
+
+- **Navigation Controller**: The initial `ViewController` is embedded in a `UINavigationController` (Editor > Embed In > Navigation Controller). This automatically provides the top navigation bar with a back button and handles the standard "push/pop" transition between screens.
+- **Segue Setup (The "Bridge")**: In `Main.storyboard`, a "Show" segue (an arrow) is drawn from the first View Controller to the second. 
+  - *Crucial Step*: We give this segue a unique Identifier named `showDetails` in the Attributes Inspector so we can refer to it in our code.
+- **Triggering the Segue**: We purposefully do NOT connect the Login button directly to the next screen. If we did, the app would navigate even if the text fields were empty! Instead, the button runs our `loginButtonTapped` code. 
+  - If the validation passes (username is not empty), we tell the app to navigate manually by calling `performSegue(withIdentifier: "showDetails", sender: self)`.
+- **Passing Data (`prepare` method)**: Right after `performSegue` is called—but *before* the new screen actually appears—iOS automatically triggers the `prepare(for:sender:)` method. We use this as an "interceptor" to hand off our data:
+  1. **Check the Identifier**: We verify we are running the `showDetails` segue (vital if a screen has multiple exits).
+  2. **Get the Destination**: We grab a reference to the upcoming screen (`segue.destination`) and cast it as our specific `DetailsViewController`.
+  3. **Inject the Data**: We copy the text from the `usernameTextField` and assign it to the `username` variable waiting on the destination screen. Then, the new screen loads with the data!
