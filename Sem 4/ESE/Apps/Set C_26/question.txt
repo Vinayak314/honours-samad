@@ -1,0 +1,12 @@
+Hotel Room Booking
+Room selection add-ons booking confirmation with unwind
+SCREENS:-
+Screen 1- Room selection, Screen 2- Add-ons, Screen
+3- Confirmation
+REQUIREMENTS:-
+Embed in a the root RoomViewController UINavigationController. Set navigation bar titles: 'Choose Room', 'Add-ons', 'Booking Confirmed".
+Screen 1: A Vertical Stack View shows 3 room options (Standard 2000, Deluxe 23500, Suite ₹6000). Each row is a Horizontal Stack View with a UILabel and UISwitch. A UILabel below shows the selected room name. A 'Next' UIButton pushes to Screen 2, passing the selected room name and price via prepare (for: sender:).
+Screen 2: Show 3 add-ons (Breakfast 2500, Airport Transfer 2800, Spa ₹1200) using Horizontal Stack View rows with UILabel and UISwitch. A running total UILabel updates as switches toggle. A 'Confirm Booking' UIButton pushes to Screen 3, passing the room info and selected add-ons ([String]) and add-on total (Double) via prepare (for:sender:).
+Screen 3: Display room name, add-ons list in a Vertical Stack View of UILabels, and grand total in a non-editable UITextField. Add a 'Start Over' UIButton that triggers an unwind segue back to Screen 1.
+Unwind segue: Declare unwindToRoomSelection unwind Segue in RoomViewController. On unwind, reset all switches on Screen 1 to OFF.
+Auto Layout: All screens use 16pt safe-area insets with 12pt stack view spacing. Action buttons pinned to bottom on all screens.

@@ -1,0 +1,11 @@
+Attempt the following
+Design a Fruit Selection screen using UIKit and Storyboard with the
+following UI components:
+A UILabel titled "Select Fruit of the Day" at the top
+A UITableView or multiple UIButtons listing fruits (Apple, Banana, Mango, etc.)
+A UILabel showing selected fruit name
+A UIImage View to display fruit image
+A UIButton labeled "Confirm Selection"
+Use a vertical UIStackView for layout organization
+Apply Auto Layout constraints for all screen sizes.
+On tapping Confirm, navigate to second screen showing selected fruit and image. Pass data using prepare (for: sender:).
