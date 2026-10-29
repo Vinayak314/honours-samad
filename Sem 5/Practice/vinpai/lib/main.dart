@@ -7,94 +7,87 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: InterActiveProfileCard(),
-    );
-  }
-}
-
-class InterActiveProfileCard extends StatefulWidget {
-  const InterActiveProfileCard({super.key});
-
-  @override
-  State<InterActiveProfileCard> createState() => _InteractiveProfileCardState();
-}
-
-class _InteractiveProfileCardState extends State<InterActiveProfileCard> {
-  int likeCount = 0;
-  bool isLiked = false;
-
-  void toggleLike() {
-    setState(() {
-      if (isLiked) {
-        likeCount--;
-        isLiked = false;
-      } else {
-        likeCount++;
-        isLiked = true;
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Interactive Card'),
-        backgroundColor: Colors.indigo,
-        foregroundColor: Colors.white,
-      ),
-      body: Center(
-        child: Container(
-          width: 200,
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.indigo.shade50,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: Colors.indigo, width: 2),
-          ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Vinpi'),
+          backgroundColor: Colors.indigo,
+          foregroundColor: Colors.white,
+        ),
+        body: Center(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.indigo,
-                child: Icon(Icons.person, size: 40, color: Colors.white),
-              ),
-              const SizedBox(height: 12),
               const Text(
-                'Vinpi Developer',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                "This is my first flutter code",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.indigo
+                ),
               ),
-              const Text(
-                'Motorsports Enthusiast',
-                style: TextStyle(color: Colors.grey),
+              const SizedBox(height: 20),
+
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 12
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.indigo.shade50,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.indigo, width: 2)
+                ),
+
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.star, color: Colors.amber, size: 20),
+                    SizedBox(width: 10),
+                    Text(
+                      'Widget Tree in Action',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
+                        
+                      )
+                    )
+                  ],
+                  )
               ),
 
-              Row(
+            Container(
+              margin: EdgeInsets.symmetric(
+                vertical: 10
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 40,
+                vertical: 40
+              ),
+              decoration: BoxDecoration(
+                color: Colors.indigo.shade100,
+              ),
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                    icon: Icon(
-                      isLiked ? Icons.favorite : Icons.favorite_border,
-                      color: isLiked ? Colors.red : Colors.grey,
-                      size: 30,
-                    ),
-                    onPressed: toggleLike,
-                  ),
-                  const SizedBox(width: 8),
+                  Icon(Icons.person, color: Colors.black, size: 30),
+                  SizedBox(width: 20),
                   Text(
-                    '$likeCount Likes',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                  ),
+                    'User Profile'
+                  )
                 ],
-              ),
+              )
+            )
             ],
-          ),
-        ),
-      ),
+            ),
+            )
+        )
     );
   }
 }
+
+
+ 
